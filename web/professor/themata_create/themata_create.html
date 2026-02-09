@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEID Διπλωματική</title>
+    <link rel="stylesheet" href="../../style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+</head>
+<body>
+    <header class="header">
+        <img class="logo" onclick="window.location.href='../professor_arxiki.html'" src="../../image/Upatras.png" alt="https://www.upatras.gr/">
+        <img class="pap" onclick="window.location.href='../professor_arxiki.html'" src="../../image/Upatrasl.png" alt="https://www.upatras.gr/">
+        <div class="user">
+            <button class="user-button">
+            <img class="userimage" src="../../image/user.png">
+            <div class="user-info" id="user-info">
+               <!-- Ονοματεπώνυμο -->
+            </div>
+            </button>
+         <div class="popup-menu">
+            <ul>
+                <li onclick="window.location.href='../profil.html'"> <img class="icon" src="../../image/profile.png" alt="Προφίλ"> Προφίλ</li>
+                <li onclick="window.location.href='../management/management.html'"> <img class="icon" src="../../image/project.png" alt="Project"> Διαχείριση διπλωματικής εργασίας</li>
+                <li onclick="window.location.href='../message/message.html'"> <img class="icon" src="../../image/messages.png" alt="Μηνύματα"> Μηνύματα</li>
+                <li onclick="window.location.href='../../login/Login.html'"> <img class="icon" src="../../image/exit.png" alt="Έξοδος"> Έξοδος</li>
+            </ul>
+        </div>
+        </div>
+    </header>
+    <div class="main">
+        <div class="section-left">
+            <h3 class="menu-left" onclick="window.location.href='../themata_projection/themata_projection.html'"> Προβολή και Δημιουργία Θέματος</h3>
+            <h3 class="menu-left"onclick="window.location.href='../assigment/assigment.html'"> Ανάθεση Θέματος</h3>
+            <h3 class="menu-left"onclick="window.location.href='../de_projection/de_projection.html'"> Προβολή Διπλωματικών</h3>
+            <h3 class="menu-left" onclick="window.location.href='../message/message.html'"> Προβολή Προσκλήσεων</h3>
+            <h3 class="menu-left"> Προβολή Στατιστικών</h3>
+            <h3 class="menu-left" onclick="window.location.href='../management/management.html'"> Διαχείριση Διπλωματικών</h3>
+        </div>
+        <div class="section-right">
+            <h2>Δημιουργία θέματος</h2>
+            <form id="uploadForm" enctype="multipart/form-data">
+                <label for="title" >Τίτλος:</label>
+                <input type="text" id="title" name="title" placeholder="Εισάγετε τον τίτλο">
+                <label for="description">Μικρή περιγραφή:</label>
+                <textarea type="text" id="description" name="description" placeholder="Εισάγετε μια μικρή περιγραφή"></textarea>
+                <label for="file">Επισύναψη:</label>
+                <input type="file" id="file" name="file">
+            
+                <button class="button-all" type="button" id="submitBtn">Υποβολή</button>
+            </form>
+        </div>
+    </div>
+    <script src="themata_create.js"></script>
+</body>
+</html>

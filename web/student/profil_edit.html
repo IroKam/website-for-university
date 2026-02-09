@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEID Διπλωματική</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+</head>
+<body>
+    <header class="header">
+        <img class="logo" onclick="window.location.href='student_arxiki.html'" src="../image/Upatras.png" alt="https://www.upatras.gr/">
+        <img class="pap" onclick="window.location.href='student_arxiki.html'"  src="../image/Upatrasl.png" alt="https://www.upatras.gr/">
+        <div class="user">
+            <button class="user-button">
+            <img class="userimage" src="../image/user.png">
+            <div class="user-info" id="user-info"> <!--Εμφανίζει το όνομα του χρήστη στο header-->
+            </div>
+            </button>
+         <div class="popup-menu">
+            <ul>
+                <li onclick="window.location.href='profil.html'"> <img class="icon" src="../image/profile.png" alt="Προφίλ"> Προφίλ</li>
+                <li onclick="window.location.href='../login/Login.html'"> <img class="icon" src="../image/exit.png" alt="Έξοδος"> Έξοδος</li>
+            </ul>
+        </div>
+        </div>
+    </header>
+    <div class="main">
+        <div class="section-left">
+            <h3 class="menu-left" onclick="window.location.href='de_projection/de_projection.html'"> Προβολή Θέματος</h3>
+            <h3 class="menu-left" onclick="window.location.href='management/management.html'">Προβολή Διπλωματικής</h3>
+        </div>
+        <div class="section-right">
+            <h2>Επεξεργασία πληροφορίων επικοινωνίας</h2>
+            <form id="uploadForm">
+                <label for="email" >Email:</label>
+                <input type="text" id="email" name="email">
+                <label for="phone">Κινητό Τηλέφωνο:</label>
+                <input type="text" id="phone" name="phone">
+                <label for="phone-home">Σταθερό Τηλέφωνο:</label>
+                <input type="text" id="phone-home" name="phone-home">
+                <label for="adress">Διεύθυνση:</label>
+                <input type="text" id="adress" name="adress">
+
+                <label for="city">Πόλη:</label>
+                <input type="text" id="city" name="city">
+
+                <label for="tk">Τ.Κ.:</label>
+                <input type="text" id="tk" name="tk">
+            
+                <button class="button-all" type="button" id="submitBtn">Υποβολή</button>
+            </form>
+        </div>
+    </div>
+    </div>
+    <script src="profil_edit.js"></script>
+</body>
+</html>

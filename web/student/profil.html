@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEID Διπλωματική</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+<body>
+    <header class="header">
+        <img class="logo" onclick="window.location.href='student_arxiki.html'" src="../image/Upatras.png" alt="https://www.upatras.gr/">
+        <img class="pap" onclick="window.location.href='student_arxiki.html'"  src="../image/Upatrasl.png" alt="https://www.upatras.gr/">
+        <div class="user">
+            <button class="user-button">
+            <img class="userimage" src="../image/user.png">
+            <div class="user-info" id="user-info">
+            </div>  <!--Εμφανίζει το όνομα του χρήστη στο header-->
+            </button>
+         <div class="popup-menu">
+            <ul>
+                <li onclick="window.location.href='profil.html'"> <img class="icon" src="../image/profile.png" alt="Προφίλ"> Προφίλ</li>
+                <li onclick="window.location.href='../login/Login.html'"> <img class="icon" src="../image/exit.png" alt="Έξοδος"> Έξοδος</li>
+            </ul>
+        </div>
+        </div>
+    </header>
+    <div class="main">
+        <div class="section-left">
+            <h3 class="menu-left" onclick="window.location.href='de_projection/de_projection.html'"> Προβολή Θέματος</h3>
+            <h3 class="menu-left" onclick="window.location.href='management/management.html'">Προβολή Διπλωματικής</h3>
+        </div>
+        <div class="section-right">
+            <h2>Τo Προφίλ σας</h2> </br></br></br>
+            <div class="profil">
+            <img class="profil-image" src="../image/user.png" alt="Προφίλ">
+            <div class="profil-name">
+                <h3 id="profil-name"> <!--Εμφανίζει το όνομα του χρήστη-->
+                </h3>
+            </div>
+            </div>
+            <div class="topics">
+                    <ul id="info">
+                    </ul>
+            </div>    
+            
+    </div>
+    <script src="profil.js"></script>
+</body>
+</html>

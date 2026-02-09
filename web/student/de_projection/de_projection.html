@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Η Διπλωματική Μου</title>
+    <link rel="stylesheet" href="../../style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+</head>
+<body>
+<header class="header">
+    <img class="logo" onclick="window.location.href='../student_arxiki.html'" src="../../image/Upatras.png" alt="Upatras">
+    <img class="pap" onclick="window.location.href='../student_arxiki.html'" src="../../image/Upatrasl.png" alt="Upatras">
+    <div class="user">
+        <button class="user-button">
+            <img class="userimage" src="../../image/user.png">
+            <div class="user-info" id="user-info"></div> <!--Ονομα φοιτητή στο header-->
+        </button>
+        <div class="popup-menu">
+            <ul>
+                <li onclick="window.location.href='../profil.html'"><img class="icon" src="../../image/profile.png" alt="Προφίλ">Προφίλ</li>
+                <li onclick="window.location.href='../../login/Login.html'"><img class="icon" src="../../image/exit.png" alt="Προφίλ">Έξοδος</li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<div class="main">
+    <div class="section-left">
+        <h3 class="menu-left" onclick="window.location.href='de_projection.html'">Προβολή Θέματος</h3>
+        <h3 class="menu-left" onclick="window.location.href='../management/management.html'">Προβολή Διπλωματικής</h3>
+    </div>
+    <div class="section-right">
+        <h2>Πληροφορίες Διπλωματικής</h2>
+        <div class="topics">
+            <ul id="diplomaInfo"> <!--Σύνδεση με αρχείο JS για την εμφάνιση των πληροφοριών-->
+            </ul>
+        </div>    
+    </div>
+</div>
+<script src="de_projection.js"></script>
+</body>
+</html>

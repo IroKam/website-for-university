@@ -1,0 +1,157 @@
+-- Δημιουργία του κεντρικού πίνακα διαπιστευτηρίων
+CREATE TABLE Users (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('Φοιτητής', 'Διδάσκων', 'Γραμματεία') NOT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Δημιουργία πίνακα Φοιτητών
+CREATE TABLE Students (
+    student_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    surname VARCHAR(100) NOT NULL,
+    father_name VARCHAR(100) NOT NULL,
+    etos_eisag YEAR NOT NULL,
+    phone INT NOT NULL,
+    home_phone INT,
+    adress VARCHAR(100) NOT NULL,
+    city VARCHAR(100) NOT NULL,
+    tk INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+    ON DELETE CASCADE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Δημιουργία πίνακα Διδασκόντων
+CREATE TABLE Professors (
+    professor_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    surname VARCHAR(100) NOT NULL,
+    telephone INT NOT NULL,
+    adress VARCHAR(100) NOT NULL,
+    city VARCHAR(100) NOT NULL,
+    tk INT NOT NULL,
+    department VARCHAR(100),
+    office_contact TEXT,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+    ON DELETE CASCADE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Δημιουργία πίνακα Γραμματείας
+CREATE TABLE Grammatia (
+    grammatia_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    tmhma VARCHAR(255) NOT NULL,
+    telephone INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+    ON DELETE CASCADE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE Themata_a (
+    themata_a_id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    professor_id INT NOT NULL, -- Ξένο κλειδί που συνδέεται με τον πίνακα Professors
+    pdf_file VARCHAR(255),
+    creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (professor_id) REFERENCES Professors(professor_id)
+    ON DELETE CASCADE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE Themata_b (
+    themata_b_id INT PRIMARY KEY AUTO_INCREMENT,           -- Μοναδικό ID για κάθε διπλωματική
+    themata_a_id INT NOT NULL,                              -- Σύνδεση με το θέμα
+    student_id INT NOT NULL,                            -- Σύνδεση με τον φοιτητή
+    status ENUM('Υπό Ανάθεση', 'Ενεργή', 'Υπό εξέταση', 'Ακυρωμένη', 'Περατωμένη') NOT NULL,
+    start_date DATE,                                    -- Ημερομηνία έναρξης
+    end_date DATE,                                      -- Ημερομηνία ολοκλήρωσης
+    proxeiro_keimeno TEXT,
+    FOREIGN KEY (themata_a_id) REFERENCES Themata_a(themata_a_id)
+    ON DELETE CASCADE,
+    FOREIGN KEY (student_id) REFERENCES Students(student_id)
+    ON DELETE CASCADE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE Trimelis (
+    trimelis_id INT PRIMARY KEY AUTO_INCREMENT,       -- Μοναδικό ID για κάθε μέλος επιτροπής
+    themata_b_id INT NOT NULL,                            -- Σύνδεση με τη διπλωματική εργασία
+    professor_id INT NOT NULL,                         -- Σύνδεση με τον καθηγητή
+    role ENUM('Επιβλέπων', 'Μέλος Τριμελούς') NOT NULL,          -- Ρόλος στην επιτροπή
+    FOREIGN KEY (themata_b_id) REFERENCES Themata_b(themata_b_id)
+    ON DELETE CASCADE,
+    FOREIGN KEY (professor_id) REFERENCES Professors(professor_id)
+    ON DELETE CASCADE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE Comments (
+    comment_id INT PRIMARY KEY AUTO_INCREMENT,        -- Μοναδικό ID για κάθε σχόλιο
+    themata_b_id INT NOT NULL,                           -- Σύνδεση με τη διπλωματική εργασία
+    professor_id INT NOT NULL,                             -- Χρήστης που έκανε το σχόλιο (καθηγητής, φοιτητής ή γραμματεία)
+    comment TEXT NOT NULL,                            -- Το περιεχόμενο του σχολίου
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,   -- Ημερομηνία και ώρα δημιουργίας του σχολίου
+    FOREIGN KEY (themata_b_id) REFERENCES Themata_b(themata_b_id)
+    ON DELETE CASCADE,
+    FOREIGN KEY (professor_id) REFERENCES Professors(professor_id)
+    ON DELETE CASCADE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE Invitations (
+    invitation_id INT PRIMARY KEY AUTO_INCREMENT,   -- Μοναδικό ID για κάθε πρόσκληση
+    themata_b_id INT NOT NULL,                         -- Σύνδεση με τη διπλωματική εργασία
+    student_id INT NOT NULL,                        -- Ο φοιτητής που έστειλε την πρόσκληση
+    professor_id INT NOT NULL,                      -- Ο καθηγητής που λαμβάνει την πρόσκληση
+    status ENUM('Ανοιχτή', 'Αποδεκτή', 'Απορριφθείσα') DEFAULT 'Ανοιχτή', -- Κατάσταση πρόσκλησης
+    sent_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  -- Ημερομηνία αποστολής της πρόσκλησης
+    response_date TIMESTAMP null,                        
+    FOREIGN KEY (themata_b_id) REFERENCES themata_b(themata_b_id)
+    ON DELETE CASCADE,
+    FOREIGN KEY (student_id) REFERENCES Students(student_id)
+    ON DELETE CASCADE,
+    FOREIGN KEY (professor_id) REFERENCES Professors(professor_id)
+    ON DELETE CASCADE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE Grades (
+    grade_id INT PRIMARY KEY AUTO_INCREMENT,       -- Μοναδικό ID για κάθε βαθμολογία
+    themata_b_id INT NOT NULL,                        -- Σύνδεση με τη διπλωματική εργασία
+    professor_id INT NOT NULL,                     -- Καθηγητής που έδωσε τον βαθμό
+    grade DECIMAL(4,2) NOT NULL,                   -- Ο βαθμός (π.χ., 8.5, 9.0)
+    criteria TEXT,                                 -- Τα κριτήρια αξιολόγησης (προαιρετικά)
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,-- Ημερομηνία και ώρα βαθμολόγησης
+    link TEXT,
+    entipo TEXT,
+    FOREIGN KEY (themata_b_id) REFERENCES Themata_b(themata_b_id)
+    ON DELETE CASCADE,
+    FOREIGN KEY (professor_id) REFERENCES Professors(professor_id)
+    ON DELETE CASCADE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+;
+
+CREATE TABLE Exams (
+exams_id INT PRIMARY KEY AUTO_INCREMENT,
+themata_b_id INT NOT NULL,
+tropos ENUM('δια ζώσης', 'διαδικτυακά') NOT NULL,
+aithousa TEXT,
+presentation_date DATE,
+FOREIGN KEY (themata_b_id) REFERENCES Themata_b(themata_b_id)
+ON DELETE CASCADE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+
+CREATE TABLE Cancel  (
+cancel_id INT PRIMARY KEY AUTO_INCREMENT,
+themata_b_id INT NOT NULL,
+cancel_reason TEXT,
+cancel_number INT,
+year YEAR,
+FOREIGN KEY (themata_b_id) REFERENCES Themata_b(themata_b_id)
+ON DELETE CASCADE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+;
+
+

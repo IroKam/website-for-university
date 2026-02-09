@@ -1,0 +1,26 @@
+ $(document).ready(function() {
+        $.ajax({
+            url: "http://localhost/web/check_connection.php",
+            type: "GET",
+            success: function(result) {
+                console.log("Απάντηση από τον server:", result); // Εκτύπωση της απάντησης
+                try {
+                    var data = result; // Ανάλυση JSON
+                    
+                    if (data.message){
+                        $("#result").html(data.message);
+                    } else {
+                        var userInfo = "<p>" + data[0].name + " " + data[0].surname + "</p>";
+                        $("#result").html(userInfo);
+                    }
+                } catch (e) {
+                    console.error("Σφάλμα κάτα την εμφάνιση των δεδομένων:", e);
+                    $("#result").html("Σφάλμα στην ανάλυση των δεδομένων .");
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error("Σφάλμα AJAX:", error);
+            }
+        });
+        
+    });
