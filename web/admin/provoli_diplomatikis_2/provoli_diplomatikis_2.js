@@ -1,21 +1,26 @@
 const userButton = document.querySelector('.user-button');
 const popupMenu = document.querySelector('.popup-menu');
 
+// Εμφάνιση-Απόκρυψη του μενού όταν πατάς το κουμπί χρήστη
 userButton.addEventListener('click', () => {
+    // Αν το μενού είναι ήδη ορατό, το κρύβουμε
     if (popupMenu.style.display === 'block') {
         popupMenu.style.display = 'none';
     } else {
-        popupMenu.style.display = 'block';
-    }
-});
-document.addEventListener('click', (e) => {
-    if (!userButton.contains(e.target) && !popupMenu.contains(e.target)) {
-        popupMenu.style.display = 'none';
+        popupMenu.style.display = 'block'; // Εμφανίζουμε το μενού
     }
 });
 
-// --- Εμφάνιση θεμάτων ---
+// Κλείσιμο του μενού αν κάνεις κλικ κάπου αλλού στην σελίδα
+document.addEventListener('click', (e) => {
+    if (!userButton.contains(e.target) && !popupMenu.contains(e.target)) {
+        popupMenu.style.display = 'none';  // Απόκρυψη του μενού
+    }
+});
+
+// Εμφάνιση θεματος
 $(document).ready(function () {
+    // παιρνω το id απο το storedData
     var storedData = sessionStorage.getItem('InfoData');
     if (storedData) {
         var parsedData = JSON.parse(storedData);
@@ -44,7 +49,8 @@ $(document).ready(function () {
                         themata.name + ' ' + themata.surname + ' (' + themata.role + ')'
                     );
                 });
-
+                
+                // πληροφοριες θέματος
                 var $infoContainer = $('#info');
                 $.each(grouped, function (key, thema) {
                     $infoContainer.append(
@@ -67,7 +73,7 @@ $(document).ready(function () {
     }
 });
 
-// Διαχείριση με slides
+// Διαχείριση θέματος
 $(document).on('click', '.manage-btn', function() {
     var $btn = $(this);
     var themaId = $btn.data('id');
@@ -106,16 +112,18 @@ $(document).on('click', '.manage-btn', function() {
             </div>
         `).slideDown();
 
-        // Ενέργεια κουμπιού ΑΠ
+        // Ενέργεια κουμπιού Καταχώρηση ΑΠ ΓΣ
         $extra.find('.ap-btn').on('click', function() {
             $extra.find('.cancel-form').slideUp();
             $extra.find('.ap-form').slideToggle();
         });
-        // Ενέργεια κουμπιού Ακύρωση
+
+        // Ενέργεια κουμπιού Ακύρωση Ανάθεσης
         $extra.find('.cancel-btn').on('click', function() {
             $extra.find('.ap-form').slideUp();
             $extra.find('.cancel-form').slideToggle();
         });
+
         // Αποθήκευση ΑΠ
         $extra.find('.save-ap-btn').on('click', function() {
             var ap = $extra.find('.ap-input').val();
@@ -123,7 +131,7 @@ $(document).on('click', '.manage-btn', function() {
             alert("Συμπλήρωσε τον αριθμό πρακτικού εξέτασης.");
             return;
         }
-            // AJAX για αποθήκευση ap/themaId αν θέλεις
+            // AJAX για καταχώρηση ΑΠ
             $.ajax({
                 url: 'de_management.php',
                 type: 'POST',
@@ -133,7 +141,7 @@ $(document).on('click', '.manage-btn', function() {
                     ap: ap
                 },
                 success: function(response) {
-                    alert("Ο ΑΠ αποθηκεύτηκε!");
+                    alert("Ο ΑΠ αποθηκεύτηκε.");
                     $extra.slideUp();
                 },
                 error: function(xhr, status, error) {
@@ -141,7 +149,8 @@ $(document).on('click', '.manage-btn', function() {
                 }
             });
         });
-        // Αποθήκευση ακύρωσης
+
+        // Ακύρωση ανάθεσης
         $extra.find('.save-cancel-btn').on('click', function() {
             var gsNumber = $extra.find('.gs-number-input').val();
             var gsYear = $extra.find('.gs-year-input').val();
@@ -150,7 +159,8 @@ $(document).on('click', '.manage-btn', function() {
             alert("Συμπλήρωσε όλα τα πεδία (Αριθμός ΓΣ, Έτος ΓΣ, Λόγος ακύρωσης).");
             return;
             }
-        // AJAX για αποθήκευση gsNumber, gsYear, reason, themaId αν θέλεις
+
+        // AJAX για αποθήκευση gsNumber, gsYear, reason
            $.post('de_management.php', {
            action: 'cancel',
            thema_id: themaId,
@@ -158,7 +168,7 @@ $(document).on('click', '.manage-btn', function() {
            gs_year: gsYear,
            reason: reason
            }, function(response){
-           alert("Η ακύρωση πραγματοποιήθηκε!");
+           alert("Η ακύρωση πραγματοποιήθηκε.");
            $extra.slideUp();
            });
         });   
@@ -177,12 +187,12 @@ $(document).on('click', '.manage-btn', function() {
         </div>
     `).slideDown();
 
-    // Ενέργεια: άνοιγμα φόρμας πρακτικού
+    // Ενέργεια κουμπιου καταχώρηση πρακτικού εξετασης
     $extra.find('.exam-report-btn').on('click', function() {
         $extra.find('.exam-report-form').slideToggle();
     });
     
-    // Ενέργεια: αποθήκευση πρακτικού
+    // Ενέργεια κουμπιού αποθήκευση html πρακτικού
     $extra.find('.save-exam-report-btn').on('click', function() {
         var html = $extra.find('.exam-report-input').val().trim();
         if (!html) {
@@ -194,12 +204,12 @@ $(document).on('click', '.manage-btn', function() {
             thema_id: themaId,
             report_html: html
         }, function(response){
-            alert("Το πρακτικό εξέτασης αποθηκεύτηκε!");
+            alert("Το πρακτικό εξέτασης αποθηκεύτηκε.");
             $extra.slideUp();
         });
     });
 
-    // Ενέργεια: μετατροπή σε Περατωμένη
+    // Ενέργεια κουμπιού μετατροπή σε Περατωμένη
     $extra.find('.to-finished-btn').on('click', function() {
         $.post('de_management.php', {
         action: 'to_finished',

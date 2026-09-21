@@ -14,7 +14,7 @@ $id="SELECT grammatia_id FROM grammatia WHERE user_id=$user_id";
             $residResult = $conn->query($id);
             $resid = $residResult->fetch_assoc()['grammatia_id'];
 
-// Λήψη της μεταβλητής από το AJAX αίτημα
+// παιρνω το id του θεματος 
 $themata_a_id = isset($_POST['id']) ? intval($_POST['id']) : 0;
 if ($themata_a_id === 0) {
     echo json_encode(['error' => 'Invalid ID']);

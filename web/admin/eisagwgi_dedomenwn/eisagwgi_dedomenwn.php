@@ -68,8 +68,6 @@ $id="SELECT grammatia_id FROM grammatia WHERE user_id=$user_id";
                  // SQL για την εισαγωγή των δεδομένων στον πινακα students
                  $students_sql = "INSERT INTO students (student_id, name, surname, father_name, etos_eisag, phone, home_phone, adress, city, tk, user_id) 
                          VALUES ('$student_id', '$student_name', '$student_surname', '$student_father_name', '$student_etos_eisag', '$student_phone', '$student_home_phone', '$student_address', '$student_city', '$student_tk', $new_user_id)";
-                 
-                 // Εκτέλεση της SQL εντολής
                  if ($conn->query($students_sql) === TRUE) {
                      echo "Ο φοιτητής " . $student_name." ". $student_surname ." εισήχθη επιτυχώς.\n ";
                  } else {
@@ -122,8 +120,6 @@ $id="SELECT grammatia_id FROM grammatia WHERE user_id=$user_id";
                 // SQL για την εισαγωγή των δεδομένων στον πινακα professors
                 $professors_sql = "INSERT INTO professors (professor_id, name, surname, telephone, adress, city, tk, department, office_contact, user_id) 
                         VALUES ('$professor_id', '$professor_name', '$professor_surname', '$professor_telephone', '$professor_address', '$professor_city', '$professor_tk', '$professor_department', '$professor_office_contact', '$new_user_id')";
-                
-                // Εκτέλεση της SQL εντολής
                 if ($conn->query($professors_sql) === TRUE) {
                     echo "Ο διδάσκων " . $professor_name." ". $professor_surname ." εισήχθη επιτυχώς. \n";
                 } else {

@@ -1,9 +1,9 @@
 const userButton = document.querySelector('.user-button');
-    const popupMenu = document.querySelector('.popup-menu');
+const popupMenu = document.querySelector('.popup-menu');
 
     // Εμφάνιση / Απόκρυψη του μενού όταν πατάς το κουμπί χρήστη
     userButton.addEventListener('click', () => {
-        // Αν το μενού είναι ήδη ορατό, το κρύβουμε
+        // Αν το μενού είναι ήδη ορατό το κρύβουμε
         if (popupMenu.style.display === 'block') {
             popupMenu.style.display = 'none';
         } else {
@@ -29,12 +29,12 @@ const userButton = document.querySelector('.user-button');
             let formData = new FormData();
             formData.append('jsonFile', file);
 
-            // Αποστολή του JSON αρχείου στο PHP αρχείο μέσω fetch API
+            // Αποστολή του JSON αρχείου στο php
             fetch('eisagwgi_dedomenwn.php', {
             method: 'POST',
             body: formData
         })
-        .then(response => response.text())  // Διαβάζουμε την απάντηση ως ΚΕΙΜΕΝΟ
+        .then(response => response.text())  // Διαβάζουμε την απάντηση ως κείμενο
         .then(text => {
             console.log('Απάντηση από τον server:', text);
             alert(text);  // Δείχνουμε την απάντηση στον χρήστη

@@ -1,9 +1,9 @@
 const userButton = document.querySelector('.user-button');
-    const popupMenu = document.querySelector('.popup-menu');
+const popupMenu = document.querySelector('.popup-menu');
 
-    // Εμφάνιση / Απόκρυψη του μενού όταν πατάς το κουμπί χρήστη
+    // Εμφάνιση/Απόκρυψη του μενού όταν πατάς το κουμπί χρήστη
     userButton.addEventListener('click', () => {
-        // Αν το μενού είναι ήδη ορατό, το κρύβουμε
+        // Αν το μενού είναι ήδη ορατό το κρύβουμε
         if (popupMenu.style.display === 'block') {
             popupMenu.style.display = 'none';
         } else {

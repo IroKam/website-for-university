@@ -1,5 +1,5 @@
 const userButton = document.querySelector('.user-button');
-    const popupMenu = document.querySelector('.popup-menu');
+const popupMenu = document.querySelector('.popup-menu');
 
     // Εμφάνιση-Απόκρυψη του μενού όταν πατάς το κουμπί χρήστη
     userButton.addEventListener('click', () => {
@@ -18,7 +18,7 @@ const userButton = document.querySelector('.user-button');
         }
     });
 
-    //Τα θέματα
+//Τα θέματα
 $(document).ready(function() {
     
     // Ανάκτηση δεδομένων κατά την αρχική φόρτωση

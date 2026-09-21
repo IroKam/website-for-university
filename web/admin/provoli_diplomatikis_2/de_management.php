@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         if ($conn->query($sql)) {
             echo json_encode([
                 "success" => true,
-                "message" => "Ο ΑΠ αποθηκεύτηκε!"
+                "message" => "Ο ΑΠ αποθηκεύτηκε."
             ]);
         } else {
             echo json_encode([
@@ -44,10 +44,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     }
 
     if ($action === 'cancel') {
-    $thema_id = $_POST['thema_id'];
-    $gs_number = $_POST['gs_number'];
-    $gs_year = $_POST['gs_year'];
-    $reason = $_POST['reason'];
+        $thema_id = $_POST['thema_id'];
+        $gs_number = $_POST['gs_number'];
+        $gs_year = $_POST['gs_year'];
+        $reason = $_POST['reason'];
 
     // Εύρεση themata_b_id
     $sql = "SELECT themata_b_id FROM themata_b WHERE themata_a_id = $thema_id";
@@ -59,14 +59,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     $sql1 = "INSERT INTO cancel (themata_b_id, cancel_number, year, cancel_reason) VALUES ($themata_b_id, '$gs_number', '$gs_year', '$reason')";
     $ok1 = $conn->query($sql1);
 
-    // Ακύρωση ανάθεσης
+    // Ακύρωση ανάθεσης(αλλαγή στατους θέματος)
     $sql2 = "UPDATE themata_b SET status = 'Ακυρωμένη' WHERE themata_b_id = $themata_b_id";
     $ok2 = $conn->query($sql2);
 
     if ($ok1 && $ok2) {
          echo json_encode([
                 "success" => true,
-                "message" => "Η ακύρωση ολοκληρώθηκε!"
+                "message" => "Η ακύρωση ολοκληρώθηκε."
             ]);
         } else {
             echo json_encode([
@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         if ($conn->query($sql)) {
             echo json_encode([
                 "success" => true,
-                "message" => "Το πρακτικό αποθηκεύτηκε!"
+                "message" => "Το πρακτικό αποθηκεύτηκε."
             ]);
         } else {
             echo json_encode([
@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         if (!$result || !$row = $result->fetch_assoc()) {
         echo json_encode([
             "success" => false,
-            "message" => "Δεν βρέθηκε το θέμα!"
+            "message" => "Δεν βρέθηκε το θέμα."
         ]);
         exit;
         }
@@ -136,7 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         if ($conn->query($sql)) {
             echo json_encode([
                 "success" => true,
-                "message" => "Η κατάσταση της διπλωματικής άλλαξε σε Περατωμένη!"
+                "message" => "Η κατάσταση της διπλωματικής άλλαξε σε Περατωμένη."
             ]);
         } else {
             echo json_encode([
