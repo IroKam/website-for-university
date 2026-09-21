@@ -1,0 +1,52 @@
+{
+    "students": [
+        {
+        "name": "Nikos",
+        "surname": "Peletie",
+        "email": "555",
+        "password": "12345"
+        },
+        {
+        "name": "Nikosggg",
+        "surname": "Peletiggge",
+        "email": "555",
+        "password": "12345"
+        },
+        {
+        "name": "ggg",
+        "surname": "ggge",
+        "email": "55"
+        },
+        {
+        "name": "Nikos",
+        "surname": "Peletie",
+        "password": "12345"
+        }
+    ],
+    "professors":[
+       {
+        "name": "Kathigitis",
+        "surname": "kathis",
+        "email": "555",
+        "password": "12345"
+       },
+       {
+        "name": "Kathigitiss",
+        "surname": "kathiss",
+        "email": "55544",
+        "password": "12345"
+       },
+       {
+        "name": "Kathigitissss",
+        "surname": "kathissss",
+        "password": "12345"
+       },
+       {
+        "name": "Kathigitisssssss",
+        "surname": "kathissssss",
+        "email": "55544"
+       
+       }    
+      
+    ]
+  }

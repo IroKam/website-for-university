@@ -1,0 +1,257 @@
+/* Βασικό στυλ για το σώμα της σελίδας */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    
+}
+
+/* Κεφαλίδα */
+.header {
+    top: 0;
+    left: 0;
+    right: 0;
+    background-image: linear-gradient(to right, rgb(255, 40, 40), rgb(156, 15, 15), rgb(80, 9, 9), rgb(39, 11, 11), black, rgb(0, 0, 0));
+    color: white;
+    padding: 10px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo{
+    position: absolute;
+    left: 0%;
+    width: 100px;
+    height: 100px;
+    margin-left: 20px;
+}
+
+.pap {
+    width: 180px;
+    height: 100px;
+    margin-left: 10px;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+}
+
+.user-info{
+    color: white;
+}
+
+.userimage {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/* Στυλ για το κουμπί χρήστη */
+.user-button {
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.user-button img {
+    width: 40px; /* Μπορείς να προσαρμόσεις το μέγεθος */
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-button span {
+    color: white; /* Χρώμα για το κείμενο */
+    font-size: 16px;
+}
+
+/* Στυλ για το popup μενού */
+.popup-menu {
+    display: none; /* Κρυφό από προεπιλογή */
+    position: absolute;
+    top: 120px; /* Απόσταση από την κορυφή του στοιχείου χρήστη */
+    color:black;
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+    width: 200px;
+}
+
+.popup-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.popup-menu ul li {
+    display: flex; /* Ενεργοποίηση Flexbox */
+    align-items: center; /* Κεντράρισμα κάθετα */
+    justify-content: flex-start; /* Στοίχιση περιεχομένου στην αρχή (αριστερά) */
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.popup-menu ul li:hover {
+    background-color: #f1f1f1;
+}
+
+.popup-menu ul li .icon{
+    width: 20px;
+    height: 20px;
+    margin-right: 20px; /* Απόσταση εικόνας από το κείμενο */
+}
+
+
+/* Κύριο περιεχόμενο */
+.main {
+    display: flex;
+    padding: 20px;
+}
+
+/* Αριστερή στήλη */
+.section-left {
+    width: 20%; /* Μείωση μεγέθους στο 20% του συνολικού πλάτους */
+    margin-right: 20px;
+    background: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.menu-left {
+    display: block; /* Κάνει το στοιχείο να εκτείνεται σε όλο το διαθέσιμο πλάτος */
+    background-color: #f0f0f0; /* Ανοιχτό γκρι αρχικό φόντο */
+    color: black; /* Μαύρο κείμενο */
+    padding: 20px; /* Εσωτερικό padding */
+    border-radius: 10px; /* Στρογγυλεμένες γωνίες */
+    text-align: center; /* Κεντράρισμα του κειμένου */
+    cursor: pointer; /* Δείκτης χεριού */
+    transition: background-color 0.3s ease; /* Ομαλή μετάβαση */
+    width: 100%; /* Πλάτος να καλύπτει όλο το κοντέινερ */
+    box-sizing: border-box; /* Συμπερίληψη padding στο συνολικό πλάτος */
+}
+
+.menu-left:hover {
+    background-color: #dcdcdc; /* Πιο σκούρο γκρι στο hover */
+}
+
+/* Δεξιά στήλη */
+.section-right {
+    flex: 2;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.section-right h2 {
+    margin-top: 0;
+}
+
+/* Κουμπί */
+.button-all {
+    background-color: #7d0000;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button-all:hover {
+    background-color: #b30000;
+}
+
+/* Εμφάνιση θεμάτων */
+.topics {  /* Και κουτάκι για τις πληροφορίες για το χρήστη*/
+    margin-top: 20px;
+}
+
+.topics ul {
+    list-style-type: none; /* Αφαιρεί bullets */
+    padding: 0; /* Αφαιρεί την εσοχή */
+    margin: 0; /* Αφαιρεί τα περιθώρια */
+    cursor: pointer;
+}
+
+.topics ul li {
+    background: #dcdcdc;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.topics ul li h3{
+    margin-top: 2px;
+    margin-bottom: 2px;
+    text-decoration: underline;
+}
+.topics ul li h4{
+    margin-top: 0px;
+    margin-bottom: 2px;
+}
+
+/*Στοιχείο Φορμας */
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+input[type="text"], textarea, input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: none;
+    height: 150px;
+}
+
+button {
+    background-color: #6b0000;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #940000;
+}
+
+/* Λίστα προτάσεων */
+.suggestions-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #ccc;
+    max-height: 150px;
+    overflow-y: auto;
+    position: absolute;
+    z-index: 1000;
+    background: white;
+    width: calc(100% - 20px);
+}
+
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0;
+}

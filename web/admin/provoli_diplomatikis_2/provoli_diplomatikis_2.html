@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEID Διπλωματική</title>
+    <link rel="stylesheet" href="../admin.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Προσθήκη jQuery -->
+</head>
+<body>
+    <header class="header">
+        <img class="logo" onclick="window.location.href='../admin_arxiki.html'" src="../../image/upatras.png" alt="https://www.upatras.gr/">
+        <img class="pap" onclick="window.location.href='../admin_arxiki.html'" src="../../image/Upatrasl.png" alt="https://www.upatras.gr/">
+        <div class="user">
+            <button class="user-button">
+            <img class="userimage" src="../../image/user.png">
+            <div class="user-info" id="user-info">
+               <a>Γραμματεία</a>
+            </div>
+            </button>
+         <div class="popup-menu">
+            <ul>
+                <li onclick="window.location.href='../../login/Login.html'"> <img class="icon" src="../../image/exit.png" alt="Έξοδος"> Έξοδος</li>
+            </ul>
+        </div>
+        </div>
+    </header>
+    <div class="main">
+        <div class="section-left">
+            <h3 class="menu-left" onclick="window.location.href='../provoli_diplomatikis_1/provoli_diplomatikis_1.html'"> Προβολή διπλωματικής</h3>
+            <h3 class="menu-left" onclick="window.location.href='../eisagwgi_dedomenwn/eisagwgi_dedomenwn.html'"> Εισαγωγή Δεδομένων</h3>
+        </div>
+        <div class="section-right">
+            <h2>Θέματα</h2>
+            <div class="topics">
+                <ul id="info">
+                     <!-- Εδώ θα εμφανίζονται τα θέματα -->
+                </ul>
+        </div>   
+    </div>
+        <script src="provoli_diplomatikis_2.js"></script>
+        </body>
+        </html>
